@@ -53,10 +53,16 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-/* eslint-disable max-len */
-var eos_1 = require("./blockchains/eos");
-var ethereum_1 = require("./blockchains/ethereum");
+var eos = __importStar(require("./blockchains/eos/index"));
+var ethereum = __importStar(require("./blockchains/ethereum/index"));
 var BNTBlockchainId = '0x1F573D6Fb3F13d689FF844B4cE37794d79a7FF1C';
 var EthereumAnchorToken = {
     blockchainType: 'ethereum',
@@ -100,9 +106,9 @@ exports.getConverterBlockchainId = function (token) { return __awaiter(void 0, v
         switch (_a.label) {
             case 0:
                 if (!(token.blockchainType == 'ethereum')) return [3 /*break*/, 2];
-                return [4 /*yield*/, ethereum_1.getConverterBlockchainId(token.blockchainId)];
+                return [4 /*yield*/, ethereum.getConverterBlockchainId(token.blockchainId)];
             case 1: return [2 /*return*/, _a.sent()];
-            case 2: return [4 /*yield*/, eos_1.getConverterBlockchainId(token)];
+            case 2: return [4 /*yield*/, eos.getConverterBlockchainId(token)];
             case 3: return [2 /*return*/, _a.sent()];
         }
     });
@@ -112,9 +118,9 @@ exports.getReserveCount = function (reserves, blockchainType) { return __awaiter
         switch (_a.label) {
             case 0:
                 if (!(blockchainType == 'ethereum')) return [3 /*break*/, 2];
-                return [4 /*yield*/, ethereum_1.getReservesCount(reserves)];
+                return [4 /*yield*/, ethereum.getReservesCount(reserves)];
             case 1: return [2 /*return*/, _a.sent()];
-            case 2: return [4 /*yield*/, eos_1.getReservesCount(reserves)];
+            case 2: return [4 /*yield*/, eos.getReservesCount(reserves)];
             case 3: return [2 /*return*/, _a.sent()];
         }
     });
@@ -124,9 +130,9 @@ exports.getReserves = function (blockchainId, blockchainType, symbol, isMulti) {
         switch (_a.label) {
             case 0:
                 if (!(blockchainType == 'ethereum')) return [3 /*break*/, 2];
-                return [4 /*yield*/, ethereum_1.getReserves(blockchainId)];
+                return [4 /*yield*/, ethereum.getReserves(blockchainId)];
             case 1: return [2 /*return*/, _a.sent()];
-            case 2: return [4 /*yield*/, eos_1.getReserves(blockchainId, symbol, isMulti)];
+            case 2: return [4 /*yield*/, eos.getReserves(blockchainId, symbol, isMulti)];
             case 3: return [2 /*return*/, _a.sent()];
         }
     });
@@ -136,9 +142,9 @@ exports.getReserveToken = function (token, index, blockchainType) { return __awa
         switch (_a.label) {
             case 0:
                 if (!(blockchainType == 'ethereum')) return [3 /*break*/, 2];
-                return [4 /*yield*/, ethereum_1.getReserveBlockchainId(token, index)];
+                return [4 /*yield*/, ethereum.getReserveBlockchainId(token, index)];
             case 1: return [2 /*return*/, _a.sent()];
-            case 2: return [4 /*yield*/, eos_1.getReserveBlockchainId(token, index)];
+            case 2: return [4 /*yield*/, eos.getReserveBlockchainId(token, index)];
             case 3: return [2 /*return*/, _a.sent()];
         }
     });
@@ -149,7 +155,7 @@ function getConverterToken(blockchainId, connector, blockchainType) {
             switch (_a.label) {
                 case 0:
                     if (!(blockchainType == 'ethereum')) return [3 /*break*/, 2];
-                    return [4 /*yield*/, ethereum_1.getConverterSmartToken(connector)];
+                    return [4 /*yield*/, ethereum.getConverterSmartToken(connector)];
                 case 1: return [2 /*return*/, _a.sent()];
                 case 2: return [2 /*return*/, blockchainId];
             }
@@ -240,13 +246,13 @@ function getPathToAnchorByBlockchainId(token, anchorToken) {
                     if (!(token.blockchainType == 'eos')) return [3 /*break*/, 1];
                     _a = [token.blockchainId];
                     return [3 /*break*/, 3];
-                case 1: return [4 /*yield*/, ethereum_1.getSmartTokens(token)];
+                case 1: return [4 /*yield*/, ethereum.getSmartTokens(token)];
                 case 2:
                     _a = _b.sent();
                     _b.label = 3;
                 case 3:
                     smartTokens = _a;
-                    isMulti = token.blockchainType == 'eos' ? eos_1.isMultiConverter(token.blockchainId) : false;
+                    isMulti = token.blockchainType == 'eos' ? eos.isMultiConverter(token.blockchainId) : false;
                     response = [];
                     _i = 0, smartTokens_1 = smartTokens;
                     _b.label = 4;
