@@ -63,10 +63,6 @@ function getTokenBlockchainId(token: Token) {
     if (token.blockchainType == 'ethereum') return token.blockchainId.toLowerCase();
     return { [token.symbol]: token.blockchainId.toLowerCase() };
 }
-// function getTokenBlockchainId(token: Token) {
-//     if (token.blockchainType == 'ethereum') return token.blockchainId.toLowerCase();
-//     return token.blockchainId.toLowerCase();
-// }
 
 function isReserveToken(reserveToken: Token, token: Token) {
     if (token.blockchainType == 'ethereum' && token.blockchainId == reserveToken.blockchainId)
