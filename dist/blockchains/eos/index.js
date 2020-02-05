@@ -55,10 +55,10 @@ var formulas = __importStar(require("../../utils/formulas"));
 var paths_1 = require("./paths");
 var pathJson = paths_1.Paths;
 var jsonRpc;
-function initEOS(endpoint) {
+function init(endpoint) {
     jsonRpc = new eosjs_1.JsonRpc(endpoint, { fetch: node_fetch_1.default });
 }
-exports.initEOS = initEOS;
+exports.init = init;
 function getEosjsRpc() {
     return jsonRpc;
 }

@@ -16,7 +16,7 @@ interface Reserve {
 let pathJson = Paths;
 let jsonRpc;
 
-export function initEOS(endpoint) {
+export function init(endpoint) {
     jsonRpc = new JsonRpc(endpoint, { fetch });
 }
 

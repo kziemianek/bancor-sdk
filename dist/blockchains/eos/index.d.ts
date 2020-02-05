@@ -4,7 +4,7 @@ interface Reserve {
     currency: string;
     ratio: number;
 }
-export declare function initEOS(endpoint: any): void;
+export declare function init(endpoint: any): void;
 export declare function getEosjsRpc(): any;
 export declare const getReservesFromCode: (code: any, symbol?: any) => Promise<any>;
 export declare const getConverterSettings: (code: any) => Promise<any>;
