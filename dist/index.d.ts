@@ -1,8 +1,12 @@
-import { Token, Contract, ConversionPaths } from './path_generation';
+import { Token, ConversionPaths, BlockchainType } from './path_generation';
 interface Settings {
     ethereumNodeEndpoint: string;
     eosNodeEndpoint: string;
     ethereumContractRegistryAddress?: string;
+}
+interface Contract {
+    blockchainType: BlockchainType;
+    blockchainId: string;
 }
 export declare function init(args: Settings): Promise<void>;
 export declare function buildPathsFile(): Promise<void>;

@@ -1,6 +1,6 @@
 import * as eos from './blockchains/eos/index';
 import * as ethereum from './blockchains/ethereum/index';
-import { Token, Contract, generatePathByBlockchainIds, ConversionPaths, ConversionPathStep, BlockchainType, ConversionToken } from './path_generation';
+import { Token, generatePathByBlockchainIds, ConversionPaths, ConversionPathStep, BlockchainType, ConversionToken } from './path_generation';
 import * as retrieve_contract_version from './blockchains/ethereum/retrieve_contract_version';
 import * as fetch_conversion_events from './blockchains/ethereum/fetch_conversion_events';
 import { timestampToBlockNumber } from './blockchains/ethereum/utils';
@@ -9,6 +9,11 @@ interface Settings {
     ethereumNodeEndpoint: string;
     eosNodeEndpoint: string;
     ethereumContractRegistryAddress?: string;
+}
+
+interface Contract {
+    blockchainType: BlockchainType;
+    blockchainId: string;
 }
 
 export async function init(args: Settings) {
