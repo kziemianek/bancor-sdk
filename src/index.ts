@@ -41,7 +41,7 @@ export const calculateRateFromPaths = async (paths: ConversionPaths, amount) => 
 export async function calculateRateFromPath(paths: ConversionPaths, amount) {
     const blockchainType: BlockchainType = paths.paths[0].type;
     const convertPairs = await getConverterPairs(paths.paths[0].path, blockchainType);
-    const module = {eos: eos, ethereum: ethereum}[blockchainType];
+    const module = {eos, ethereum}[blockchainType];
     for (let i = 0; i < convertPairs.length; i++)
         amount = await module.getPathStepRate(convertPairs[i], amount);
     return amount;
