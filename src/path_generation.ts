@@ -141,7 +141,7 @@ export async function getPathToAnchorByBlockchainId(token: Token, anchorToken: T
 
     const smartTokens = token.blockchainType == 'eos' ? [token.blockchainId] : await ethereum.getSmartTokens(token);
     const isMulti = token.blockchainType == 'eos' ? eos.isMultiConverter(token.blockchainId) : false;
-    let response = [];
+
     for (const smartToken of smartTokens) {
         const blockchainId = await getConverterBlockchainId(token.blockchainType == 'ethereum' ? { blockchainType: token.blockchainType, blockchainId: smartToken } : token);
         const converterBlockchainId = token.blockchainType == 'ethereum' ? blockchainId : Object.values(blockchainId)[0];
@@ -156,7 +156,8 @@ export async function getPathToAnchorByBlockchainId(token: Token, anchorToken: T
             }
         }
     }
-    return response;
+
+    return [];
 }
 
 function getShortestPath(sourcePath, targetPath) {

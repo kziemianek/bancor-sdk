@@ -226,7 +226,7 @@ function findPath(pathObject, blockchainType) {
 exports.findPath = findPath;
 function getPathToAnchorByBlockchainId(token, anchorToken) {
     return __awaiter(this, void 0, void 0, function () {
-        var smartTokens, _a, isMulti, response, _i, smartTokens_1, smartToken, blockchainId, converterBlockchainId, reserves, reservesCount, i, reserveToken, path;
+        var smartTokens, _a, isMulti, _i, smartTokens_1, smartToken, blockchainId, converterBlockchainId, reserves, reservesCount, i, reserveToken, path;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -242,7 +242,6 @@ function getPathToAnchorByBlockchainId(token, anchorToken) {
                 case 3:
                     smartTokens = _a;
                     isMulti = token.blockchainType == 'eos' ? eos.isMultiConverter(token.blockchainId) : false;
-                    response = [];
                     _i = 0, smartTokens_1 = smartTokens;
                     _b.label = 4;
                 case 4:
@@ -278,7 +277,7 @@ function getPathToAnchorByBlockchainId(token, anchorToken) {
                 case 12:
                     _i++;
                     return [3 /*break*/, 4];
-                case 13: return [2 /*return*/, response];
+                case 13: return [2 /*return*/, []];
             }
         });
     });
