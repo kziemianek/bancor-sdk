@@ -90,13 +90,6 @@ function getTokenBlockchainId(token) {
         return token.blockchainId.toLowerCase();
     return _a = {}, _a[token.symbol] = token.blockchainId.toLowerCase(), _a;
 }
-function isReserveToken(reserveToken, token) {
-    if (token.blockchainType == 'ethereum' && token.blockchainId == reserveToken.blockchainId)
-        return true;
-    if (token.blockchainType == 'eos' && token.blockchainId == reserveToken.blockchainId)
-        return true;
-    return false;
-}
 exports.getConverterBlockchainId = function (token) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -272,7 +265,7 @@ function getPathToAnchorByBlockchainId(token, anchorToken) {
                     return [4 /*yield*/, exports.getReserveToken(reserves, i, token.blockchainType)];
                 case 9:
                     reserveToken = _b.sent();
-                    if (!!isReserveToken(reserveToken, token)) return [3 /*break*/, 11];
+                    if (!(reserveToken.blockchainId != token.blockchainId)) return [3 /*break*/, 11];
                     return [4 /*yield*/, getPathToAnchorByBlockchainId(reserveToken, anchorToken)];
                 case 10:
                     path = _b.sent();
