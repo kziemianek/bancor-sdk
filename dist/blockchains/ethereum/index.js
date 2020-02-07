@@ -54,9 +54,6 @@ var ERC20Token_1 = require("./contracts/ERC20Token");
 var ETHBlockchainId = '0xc0829421c1d260bd3cb3e0f06cfe2d52db2ce315';
 var BNTBlockchainId = '0x1F573D6Fb3F13d689FF844B4cE37794d79a7FF1C';
 var web3;
-var bancorConverter = BancorConverter_1.BancorConverter;
-var contractRegistry = ContractRegistry_1.ContractRegistry;
-var registryAbi = BancorConverterRegistry_1.BancorConverterRegistry;
 var registry;
 function init(ethereumNodeUrl, ethereumContractRegistryAddress) {
     if (ethereumContractRegistryAddress === void 0) { ethereumContractRegistryAddress = '0xf078b4ec84e5fc57c693d43f1f4a82306c9b88d6'; }
@@ -66,11 +63,11 @@ function init(ethereumNodeUrl, ethereumContractRegistryAddress) {
             switch (_a.label) {
                 case 0:
                     web3 = new web3_1.default(new web3_1.default.providers.HttpProvider(ethereumNodeUrl));
-                    contractRegistryContract = new web3.eth.Contract(contractRegistry, ethereumContractRegistryAddress);
+                    contractRegistryContract = new web3.eth.Contract(ContractRegistry_1.ContractRegistry, ethereumContractRegistryAddress);
                     return [4 /*yield*/, contractRegistryContract.methods.addressOf(web3_1.default.utils.asciiToHex('BancorConverterRegistry')).call()];
                 case 1:
                     registryBlockchainId = _a.sent();
-                    registry = new web3.eth.Contract(registryAbi, registryBlockchainId);
+                    registry = new web3.eth.Contract(BancorConverterRegistry_1.BancorConverterRegistry, registryBlockchainId);
                     decimal_js_1.default.set({ precision: 100, rounding: decimal_js_1.default.ROUND_DOWN });
                     return [2 /*return*/];
             }
@@ -130,7 +127,7 @@ function getPathStepRate(converterPair, amount) {
                     _a.label = 3;
                 case 3:
                     _a.trys.push([3, 5, , 9]);
-                    return [4 /*yield*/, exports.getConversionReturn(converterPair, amountInTokenWei, bancorConverter, web3)];
+                    return [4 /*yield*/, exports.getConversionReturn(converterPair, amountInTokenWei, BancorConverter_1.BancorConverter, web3)];
                 case 4:
                     returnAmount = _a.sent();
                     amountInTokenWei = returnAmount['0'];
@@ -156,11 +153,11 @@ function getRegistry() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    contractRegistryContract = new web3.eth.Contract(contractRegistry, '0x52Ae12ABe5D8BD778BD5397F99cA900624CfADD4');
+                    contractRegistryContract = new web3.eth.Contract(ContractRegistry_1.ContractRegistry, '0x52Ae12ABe5D8BD778BD5397F99cA900624CfADD4');
                     return [4 /*yield*/, contractRegistryContract.methods.addressOf(web3_1.default.utils.asciiToHex('BancorConverterRegistry')).call()];
                 case 1:
                     registryBlockchainId = _a.sent();
-                    return [2 /*return*/, new web3.eth.Contract(registryAbi, registryBlockchainId)];
+                    return [2 /*return*/, new web3.eth.Contract(BancorConverterRegistry_1.BancorConverterRegistry, registryBlockchainId)];
             }
         });
     });
@@ -191,7 +188,7 @@ function getReserves(converterBlockchainId) {
     return __awaiter(this, void 0, void 0, function () {
         var reserves;
         return __generator(this, function (_a) {
-            reserves = new web3.eth.Contract(bancorConverter, converterBlockchainId);
+            reserves = new web3.eth.Contract(BancorConverter_1.BancorConverter, converterBlockchainId);
             return [2 /*return*/, { reserves: reserves }];
         });
     });
